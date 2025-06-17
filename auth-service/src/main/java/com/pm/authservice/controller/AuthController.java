@@ -32,7 +32,7 @@ public class AuthController {
         if (tokenOptional.isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        //when token is valid and we want to return it to user
+
         String token = tokenOptional.get();
         return ResponseEntity.ok(new LoginResponseDTO(token));
     }

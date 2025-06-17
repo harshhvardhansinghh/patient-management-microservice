@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthService {
 
-    //dependency injection
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
     private final JwtUtil jwtUtil;
@@ -23,10 +22,10 @@ public class AuthService {
     }
 
     public Optional<String> authenticate(LoginRequestDTO loginRequestDTO) {
-        Optional<String> token = userService.findByEmail(loginRequestDTO.getEmail()) //getting user by email
+        Optional<String> token = userService.findByEmail(loginRequestDTO.getEmail())
                 .filter(u -> passwordEncoder.matches(loginRequestDTO.getPassword(),
-                        u.getPassword())) //user password matches after encoding then it will go on next step in this chain
-                .map(u -> jwtUtil.generateToken(u.getEmail(), u.getRole())); //this generates token based on user email and role
+                        u.getPassword()))
+                .map(u -> jwtUtil.generateToken(u.getEmail(), u.getRole()));
 
         return token;
     }

@@ -47,7 +47,7 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
-        return authService.validateToken(authHeader.substring(7))
+        return authService.validateToken(authHeader.substring(7))  //call validate function in auth-service business layer, start after Bearer keyword
                 ? ResponseEntity.ok().build()
                 : ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
